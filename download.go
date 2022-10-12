@@ -51,6 +51,7 @@ func DownloadFileToDisk(diskFilePath string, diskFileName, fileURL string, chmod
 	return diskFileName, diskFilePath + diskFileName, nil
 }
 
+// Downloads the file from `fileURL` and converts it into bytes
 func DownloadFileToBytes(fileURL string) ([]byte, error) {
 	resp, err := http.Get(fileURL)
 	if err != nil {
@@ -66,6 +67,9 @@ func DownloadFileToBytes(fileURL string) ([]byte, error) {
 	return bytes, nil
 }
 
+// Downloads the file from `fileURL` and converts it into base64
+// The base64 can have a prefix, e.g. `data:image/jpeg;base64,`
+// This prefix can be omitted or included using `includeDataPrefix`
 func DownloadFileToBase64(fileURL string, includeDataPrefix bool) (string, error) {
 	bytes, err := DownloadFileToBytes(fileURL)
 	if err != nil {
@@ -74,7 +78,7 @@ func DownloadFileToBase64(fileURL string, includeDataPrefix bool) (string, error
 
 	var base64Encoding string
 	mimeType := http.DetectContentType(bytes)
-	base64Encoding += fmt.Sprintf("data:%v;base64", mimeType)
+	base64Encoding += fmt.Sprintf("data:%v;base64,", mimeType)
 
 	encoded := base64.StdEncoding.EncodeToString(bytes)
 
