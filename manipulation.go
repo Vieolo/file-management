@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Replaces a certain text in a file and writes it back to the disk
 func ReplaceTextInFile(filePath string, oldText string, newText string) error {
 	fileContent, err := os.ReadFile(filePath)
 	if err != nil {
@@ -55,6 +56,7 @@ func InsertTextInFile(filePath string, toBeInserted string, landmark string, aft
 	return nil
 }
 
+// Adds new text to the bottom of the file and writes it back to the disk
 func AppendToFile(filePath string, newContent string) error {
 	// If the file doesn't exist, create it, or append to the file
 	f, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)

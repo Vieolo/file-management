@@ -5,7 +5,8 @@ import (
 	"os"
 )
 
-func CreateIfNotExists(dir string, perm os.FileMode) error {
+// Creates a directory if doesn't exist
+func CreateDirIfNotExists(dir string, perm os.FileMode) error {
 	if FileExists(dir) {
 		return nil
 	}

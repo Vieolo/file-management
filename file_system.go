@@ -7,6 +7,7 @@ import (
 )
 
 // Reads a file from the disk and converts to the base64
+//
 // This function does not return any error. if any errors, it returns an empty string
 func ReadFileToBase64NoError(filePath string) string {
 	f, e := os.ReadFile(filePath)
@@ -18,6 +19,10 @@ func ReadFileToBase64NoError(filePath string) string {
 	return ByteToBase64(f)
 }
 
+// Collects all of the files of the given directory and its
+// nested folders.
+//
+// The paths to all of the files will return in a flat array
 func GetDirFilesFlat(scrDir string) ([]string, error) {
 	paths := []string{}
 

@@ -10,6 +10,7 @@ import (
 	"golang.org/x/exp/slices"
 )
 
+// Copies a directory and its nested folders
 func CopyDirectory(scrDir string, dest string, ignoreList []string) error {
 	entries, err := os.ReadDir(scrDir)
 	if err != nil {
@@ -34,7 +35,7 @@ func CopyDirectory(scrDir string, dest string, ignoreList []string) error {
 
 		switch fileInfo.Mode() & os.ModeType {
 		case os.ModeDir:
-			if err := CreateIfNotExists(destPath, 0755); err != nil {
+			if err := CreateDirIfNotExists(destPath, 0755); err != nil {
 				return err
 			}
 			if err := CopyDirectory(sourcePath, destPath, ignoreList); err != nil {
@@ -69,6 +70,7 @@ func CopyDirectory(scrDir string, dest string, ignoreList []string) error {
 	return nil
 }
 
+// Copies a file to a destination
 func Copy(srcFile, dstFile string) error {
 	out, err := os.Create(dstFile)
 	if err != nil {
@@ -91,6 +93,7 @@ func Copy(srcFile, dstFile string) error {
 	return nil
 }
 
+// Copies a sym link
 func CopySymLink(source, dest string) error {
 	link, err := os.Readlink(source)
 	if err != nil {
