@@ -2,7 +2,10 @@ module github.com/vieolo/file-management
 
 go 1.19
 
-require github.com/stretchr/testify v1.8.0
+require (
+	github.com/stretchr/testify v1.8.0
+	golang.org/x/exp v0.0.0-20230206171751-46f607a40771
+)
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect

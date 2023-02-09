@@ -1,0 +1,18 @@
+package filemanagement
+
+import (
+	"fmt"
+	"os"
+)
+
+func CreateIfNotExists(dir string, perm os.FileMode) error {
+	if FileExists(dir) {
+		return nil
+	}
+
+	if err := os.MkdirAll(dir, perm); err != nil {
+		return fmt.Errorf("failed to create directory: '%s', error: '%s'", dir, err.Error())
+	}
+
+	return nil
+}
