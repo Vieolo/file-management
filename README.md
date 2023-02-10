@@ -1,4 +1,4 @@
-# File Management (v.0.1.0)
+# File Management (v0.1.1)
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/vieolo/file-management.svg)](https://pkg.go.dev/github.com/vieolo/file-management)
 
@@ -34,6 +34,6 @@ The functions are:
 - `AppendToFile`: Adds a text to the bottom of a file
 
 ### Movement
-- `CopyDirectory`: Copies a directory and its nested folders
 - `Copy`: Copies a file
+- `CopyDirectory`: Copies a directory and its nested folders
 - `CopySymLink`: Copies a sym link
