@@ -12,6 +12,9 @@ The functions are:
 ### Convert
 - `ByteToBase64`: Converts byte array to Base 64
 
+### CSV
+- `ReadCsvFile`: Reads a CSV file and converts the contents to an array of arrays of strings
+
 ### Download
 - `DownloadFileToDisk`: Downloads a file and writes it to the disk
 - `DownloadFileToBytes`: Downloads a file and converts it to `[]byte`
