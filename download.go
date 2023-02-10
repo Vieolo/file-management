@@ -10,7 +10,9 @@ import (
 )
 
 // Downloads the file from `fileURL` and writes to the disk
+//
 // The new file will be named as `diskFileName` and will be saved to `diskFilePath`
+//
 // If the permission of the file should be changed, it can be passes as `chmodPermission`, e.g. 0777
 func DownloadFileToDisk(diskFilePath string, diskFileName, fileURL string, chmodPermission *fs.FileMode) (string, string, error) {
 
@@ -68,7 +70,9 @@ func DownloadFileToBytes(fileURL string) ([]byte, error) {
 }
 
 // Downloads the file from `fileURL` and converts it into base64
+//
 // The base64 can have a prefix, e.g. `data:image/jpeg;base64,`
+//
 // This prefix can be omitted or included using `includeDataPrefix`
 func DownloadFileToBase64(fileURL string, includeDataPrefix bool) (string, error) {
 	bytes, err := DownloadFileToBytes(fileURL)
