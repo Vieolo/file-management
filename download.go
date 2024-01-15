@@ -14,6 +14,7 @@ import (
 // The new file will be named as `diskFileName` and will be saved to `diskFilePath`
 //
 // If the permission of the file should be changed, it can be passes as `chmodPermission`, e.g. 0777
+// The return values are -> (file name, file path, error)
 func DownloadFileToDisk(diskFilePath string, diskFileName, fileURL string, chmodPermission *fs.FileMode) (string, string, error) {
 
 	// Create the file
@@ -91,4 +92,32 @@ func DownloadFileToBase64(fileURL string, includeDataPrefix bool) (string, error
 	}
 
 	return encoded, nil
+}
+
+// Downloads a file from `fileURL` and converts it into a temporary `os.File`
+func DownloadFileToFile(fileURL string) (*os.File, error) {
+	resp, err := http.Get(fileURL)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("HTTP error: %d", resp.StatusCode)
+	}
+
+	// Create a temporary file to store the downloaded content
+	tempFile, err := os.CreateTemp("", "downloaded_file")
+	if err != nil {
+		return nil, err
+	}
+	defer tempFile.Close()
+
+	// Copy the response body to the temporary file
+	_, err = io.Copy(tempFile, resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return tempFile, nil
 }
