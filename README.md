@@ -1,4 +1,4 @@
-# File Management (v0.1.1)
+# File Management (v0.1.2)
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/vieolo/file-management.svg)](https://pkg.go.dev/github.com/vieolo/file-management)
 
@@ -14,11 +14,13 @@ The functions are:
 
 ### CSV
 - `ReadCsvFile`: Reads a CSV file and converts the contents to an array of arrays of strings
+- `WriteCsvFile`: Receives the content of the CSV file as a slice of string slice and writes it to file
 
 ### Download
 - `DownloadFileToDisk`: Downloads a file and writes it to the disk
 - `DownloadFileToBytes`: Downloads a file and converts it to `[]byte`
 - `DownloadFileToBase64`: Downloads a file and converts to base 64
+- `DownloadFileToFile`: Downloads a file and converts to a temporary `os.File`
 
 ### File System
 - `ReadFileToBase64NoError`: Reads a file and convert it to base 64

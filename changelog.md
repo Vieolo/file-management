@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.1.2 (2024-01-15)
+- Added `DownloadFileToFile` function
+- Added `WriteCsvFile` function
+
 ## v0.1.1 (2023-02-10)
 - Added license
 - Added the following functions:
